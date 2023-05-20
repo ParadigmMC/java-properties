@@ -812,7 +812,6 @@ impl<W: Write> PropertiesWriter<W> {
         for c in s.chars() {
             match c {
                 '\\' => escaped.push_str("\\\\"),
-                ' ' => escaped.push_str("\\ "),
                 '\t' => escaped.push_str("\\t"),
                 '\r' => escaped.push_str("\\r"),
                 '\n' => escaped.push_str("\\n"),
@@ -1222,7 +1221,7 @@ mod tests {
         let data = [
             ("", "", "=\n"),
             ("a", "b", "a=b\n"),
-            (" :=", " :=", "\\ \\:\\==\\ \\:\\=\n"),
+            (" :=", " :=", " \\:\\== \\:\\=\n"),
             ("!", "#", "\\!=\\#\n"),
             ("\u{1F41E}", "\u{1F41E}", "\\u1f41e=\\u1f41e\n"),
         ];
@@ -1245,7 +1244,7 @@ mod tests {
         let data = [
             ("", "", "=\n"),
             ("a", "b", "a=b\n"),
-            (" :=", " :=", "\\ \\:\\==\\ \\:\\=\n"),
+            (" :=", " :=", " \\:\\== \\:\\=\n"),
             ("!", "#", "\\!=\\#\n"),
             ("\u{1F41E}", "\u{1F41E}", "\u{1F41E}=\u{1F41E}\n"),
         ];
